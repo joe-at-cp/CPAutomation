@@ -1,0 +1,42 @@
+---
+-
+  hosts: localhost
+  tasks:
+    -
+      check_point_mgmt:
+        command: login
+        fingerprint: "{{lookup('env','cp_mgmt_fingerprint')}}"
+        parameters:
+          management: "{{lookup('env','cp_mgmt_ip')}}"
+          password: "{{lookup('env','cp_mgmt_pass')}}"
+          username: "{{lookup('env','cp_mgmt_user')}}"
+          session-name: "Ansible Add Rule"
+      name: "+] Login" 
+      register: login_response
+    -
+      check_point_mgmt:
+        command: add-access-rule
+        parameters:
+         layer: "network"
+         position: "top"
+         name: "API Rule"
+         action: "Accept"
+         source: "InternalZone"
+         destination: "DMZZone"
+         track: "Extended Log"
+         service:
+            - "ssh"
+            - "icmp-proto"
+            - "sqlnet2"
+        session-data: "{{login_response}}"
+      name: "+] Add Rule"
+    -
+      check_point_mgmt:
+        command: publish
+        session-data: "{{login_response}}"
+      name: "+] Publish"
+    -
+      check_point_mgmt:
+        command: logout
+        session-data: "{{login_response}}"
+      name: "+] Logout"

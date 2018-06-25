@@ -1,0 +1,34 @@
+---
+-
+  hosts: localhost
+  tasks:
+    -
+      check_point_mgmt:
+        command: login
+        fingerprint: "{{lookup('env','cp_mgmt_fingerprint')}}"
+        parameters:
+          management: "{{lookup('env','cp_mgmt_ip')}}"
+          password: "{{lookup('env','cp_mgmt_pass')}}"
+          username: "{{lookup('env','cp_mgmt_user')}}"
+          session-name: "Ansible Add Host"
+      name: "+] Login" 
+      register: login_response
+    -
+      check_point_mgmt:
+        command: add-host
+        parameters:
+         name: "host5"
+         ip-address: "6.5.4.3"
+         color: "magenta"
+        session-data: "{{login_response}}"
+      name: "+] Add Host"
+    -
+      check_point_mgmt:
+        command: publish
+        session-data: "{{login_response}}"
+      name: "+] Publish"
+    -
+      check_point_mgmt:
+        command: logout
+        session-data: "{{login_response}}"
+      name: "+] Logout"

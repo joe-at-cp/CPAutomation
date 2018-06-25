@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#Check Point Automation Training 
+
+#Login
+echo '[+] Login'
+LOGIN=`curl -s -k -H "Content-Type: application/json" -H "Accept: bla" -X POST -d '{"user":"'$cp_gw_user'","password":"'$cp_gw_pass'"}' $cp_gw_url/login`
+SID=`echo $LOGIN | ./jq-linux64 '.sid' | sed s/\"//g`
+echo $LOGIN | ./jq-linux64
+
+
+#cpview network traffic
+echo '[+] Cpview Network Traffic'
+curl -s -k \
+-H "Content-Type: application/json" \
+-H "Accept: bla" \
+-H "X-chkp-sid: $SID" \
+-X POST -d '{}' \
+$cp_gw_url/cpview/network-traffic | ./jq-linux64
+
