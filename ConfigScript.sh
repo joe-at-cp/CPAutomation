@@ -50,6 +50,7 @@ mgmt_url="https://$mgmt_ip/web_api/"
 gw_ia_url="https://$gw_ip/_IA_API/"
 gw_url="https://$gw_ip/rest/"
 
+export cp_mgmt_ip=$mgmt_ip
 export cp_mgmt_url=$mgmt_url
 export cp_mgmt_user=$mgmt_user
 export cp_mgmt_pass=$mgmt_pass
