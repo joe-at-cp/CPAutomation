@@ -5,5 +5,5 @@
 curl -s -k \
 -H "Content-Type: application/json" \
 -X POST -d '{"shared-secret":"'$cp_gw_pass'","ip-address":"4.2.2.4"}' \
-$cp_gw_url/show-identity | ./jq-linux64
+$cp_gw_ia_url/show-identity | ./jq-linux64
 

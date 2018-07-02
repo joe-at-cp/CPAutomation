@@ -8,7 +8,7 @@ import requests, json, urllib3, os
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 #Environment Variables
-cp_gw_url=os.environ["cp_gw_url"]
+cp_gw_url=os.environ["cp_gw_ia_url"]
 cp_gw_pass=os.environ["cp_gw_pass"]
 cp_gw_role=os.environ["cp_gw_role"]
 

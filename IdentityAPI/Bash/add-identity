@@ -5,5 +5,5 @@
 curl -s -k \
 -H "Content-Type: application/json" \
 -X POST -d '{"shared-secret":"'$cp_gw_pass'","ip-address":"4.2.2.4","machine":"Blocked Host","identity-source":"Bash Add Identity","calculate-roles":0,"session-timeout":300,"fetch-machine-groups":0,"roles":["'$cp_gw_role'"]}' \
-$cp_gw_url/add-identity | ./jq-linux64
+$cp_gw_ia_url/add-identity | ./jq-linux64
 
