@@ -1,0 +1,11 @@
+name,ip-address,color,tags
+Host1,10.1.1.1,blue,myhost1
+Host2,10.2.1.1,cyan,myhost2
+Host3,10.3.1.1,khaki,myhost3
+Host4,10.4.1.1,orchid,myhost4
+Host5,10.5.1.1,pink,myhost5
+Host6,10.6.1.1,dark blue,myhost6
+Host7,10.7.1.1,gold,myhost7
+Host8,10.8.1.1,lemon chiffon,myhost8
+Host9,10.9.1.1,purple,myhost9
+Host10,10.10.1.1,orange,myhost10

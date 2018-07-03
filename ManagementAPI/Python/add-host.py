@@ -30,7 +30,7 @@ print('[+] Add Host')
 
 url=cp_mgmt_url+'/add-host' #Set API URL
 headers = {'Content-type': 'application/json', 'Accept': 'bla', 'X-chkp-sid': cp_sid}
-data = {'name':'host5','ip-address':'6.5.4.3','color':'magenta'}
+data = {'name':'host5','ip-address':'6.5.4.3'}
 r = requests.post(url, data=json.dumps(data), headers=headers, verify=False)
 jsonreturn = json.loads(r.text)
 print json.dumps(jsonreturn, indent=4, sort_keys=True)

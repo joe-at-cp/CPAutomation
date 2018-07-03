@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#Check Point Automation Training 
+
+#Login and retrieve the session_id
+echo '[+] Login'
+LOGIN=`curl -s -k -H "Content-Type: application/json" -H "Accept: bla" -X POST -d '{"user":"'$cp_mgmt_user'","password":"'$cp_mgmt_pass'","session-name":"Bash Show Rule"}' $cp_mgmt_url/login`
+SID=`echo $LOGIN | ./jq-linux64 '.sid' | sed s/\"//g`
+echo $LOGIN | ./jq-linux64
+
+#Show Rule
+echo ''
+echo '[+] Show Rule'
+curl -s -k \
+-H "Content-Type: application/json" \
+-H "Accept: bla" \
+-H "X-chkp-sid: $SID" \
+-X POST -d '{"layer":"network","name":"API Rule"}' \
+$cp_mgmt_url/show-access-rule | ./jq-linux64 
+
+#logout
+echo ''
+echo '[+] Logout'
+curl -s -k -H "Content-Type: application/json" -H "Accept: bla" -H "X-chkp-sid: $SID" -X POST -d '{}' $cp_mgmt_url/logout | ./jq-linux64

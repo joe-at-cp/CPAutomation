@@ -4,19 +4,19 @@
 
 #Login and retrieve the session_id
 echo '[+] Login'
-LOGIN=`curl -s -k -H "Content-Type: application/json" -H "Accept: bla" -X POST -d '{"user":"'$cp_mgmt_user'","password":"'$cp_mgmt_pass'","session-name":"Bash Add Host"}' $cp_mgmt_url/login`
+LOGIN=`curl -s -k -H "Content-Type: application/json" -H "Accept: bla" -X POST -d '{"user":"'$cp_mgmt_user'","password":"'$cp_mgmt_pass'","session-name":"Bash Show Threat IOC"}' $cp_mgmt_url/login`
 SID=`echo $LOGIN | ./jq-linux64 '.sid' | sed s/\"//g`
 echo $LOGIN | ./jq-linux64
 
-#add_host
+#Show Threat IOC
 echo ''
-echo '[+] Add Host'
+echo '[+] Show Threat IOCs'
 curl -s -k \
 -H "Content-Type: application/json" \
 -H "Accept: bla" \
 -H "X-chkp-sid: $SID" \
--X POST -d '{"name":"host5","ip-address":"6.5.4.3"}' \
-$cp_mgmt_url/add-host | ./jq-linux64 
+-X POST -d '{}' \
+$cp_mgmt_url/show-threat-indicators | ./jq-linux64 
 
 
 #publish
