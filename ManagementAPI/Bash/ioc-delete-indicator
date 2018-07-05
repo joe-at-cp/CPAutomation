@@ -4,20 +4,19 @@
 
 #Login and retrieve the session_id
 echo '[+] Login'
-LOGIN=`curl -s -k -H "Content-Type: application/json" -H "Accept: bla" -X POST -d '{"user":"'$cp_mgmt_user'","password":"'$cp_mgmt_pass'","session-name":"Bash Show Threat IOC"}' $cp_mgmt_url/login`
+LOGIN=`curl -s -k -H "Content-Type: application/json" -H "Accept: bla" -X POST -d '{"user":"'$cp_mgmt_user'","password":"'$cp_mgmt_pass'","session-name":"Bash Delete Threat IOC"}' $cp_mgmt_url/login`
 SID=`echo $LOGIN | ./jq-linux64 '.sid' | sed s/\"//g`
 echo $LOGIN | ./jq-linux64
 
-#Show Threat IOC
+#Delete Threat IOC
 echo ''
-echo '[+] Show Threat IOCs'
+echo '[+] Delete Threat IOC'
 curl -s -k \
 -H "Content-Type: application/json" \
 -H "Accept: bla" \
 -H "X-chkp-sid: $SID" \
--X POST -d '{"details-level":"full"}' \
-$cp_mgmt_url/show-threat-indicators | ./jq-linux64 
-
+-X POST -d '{"name":"MaliciousHost"}' \
+$cp_mgmt_url/delete-threat-indicator | ./jq-linux64 
 
 #publish
 echo ''

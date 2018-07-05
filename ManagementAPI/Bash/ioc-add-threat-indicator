@@ -15,10 +15,8 @@ curl -s -k \
 -H "Content-Type: application/json" \
 -H "Accept: bla" \
 -H "X-chkp-sid: $SID" \
--X POST -d '{"name":"Malicious Host","observables":{"name":"obvname","ip-address":"1.1.1.1","severity":"high","confidence":"high","product":"AV"}}' \
+-X POST -d '{"name":"MaliciousHost","observables":[{"name":"MaliciousHost","ip-address":"4.2.2.4","confidence":"high","product":"AV","severity":"high","comments":"Added From IOC API"}]}' \
 $cp_mgmt_url/add-threat-indicator | ./jq-linux64 
-
-sleep 20
 
 #publish
 echo ''
