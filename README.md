@@ -7,5 +7,6 @@ Check Point R80.X Automation Training
 - Generic API
 - Misc APIs
 
-To configure Environment run #. ./ConfigScript.sh
+Install and configure Ansible with Check Point libs by running: ./Install_Ansible.sh
+To configure the environment run #. ./ConfigScript.sh
 
