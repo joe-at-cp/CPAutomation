@@ -8,7 +8,7 @@ LOGIN=`curl -s -k -H "Content-Type: application/json" -H "Accept: bla" -X POST -
 SID=`echo $LOGIN | ./jq-linux64 '.sid' | sed s/\"//g`
 echo $LOGIN | ./jq-linux64
 
-#Show Threat IOC
+#Show Threat IOC (Note: This call is from API Server versions 1.2 or newer)
 echo ''
 echo '[+] Show Threat IOCs'
 curl -s -k \
@@ -17,17 +17,6 @@ curl -s -k \
 -H "X-chkp-sid: $SID" \
 -X POST -d '{"details-level":"full"}' \
 $cp_mgmt_url/show-threat-indicators | ./jq-linux64 
-
-
-#publish
-echo ''
-echo '[+] Publish'
-curl -s -k \
--H "Content-Type: application/json" \
--H "Accept: bla" \
--H "X-chkp-sid: $SID" \
--X POST -d '{}' \
-$cp_mgmt_url/publish | ./jq-linux64
 
 #logout
 echo ''
