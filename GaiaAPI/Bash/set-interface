@@ -1,0 +1,30 @@
+#!/bin/bash
+
+#Check Point Automation Training 
+
+#Login
+echo '[+] Login'
+LOGIN=`curl -s -k -H "Content-Type: application/json" -H "Accept: bla" -X POST -d '{"user":"'$cp_gw_user'","password":"'$cp_gw_pass'"}' $cp_gw_url/login`
+SID=`echo $LOGIN | ./jq-linux64 '.sid' | sed s/\"//g`
+echo $LOGIN | ./jq-linux64
+
+
+#set interface 
+echo '[+] Set Interface IPv4'
+curl -s -k \
+-H "Content-Type: application/json" \
+-H "Accept: bla" \
+-H "X-chkp-sid: $SID" \
+-X POST -d '{"interface":"eth5","ipv4-address":"10.10.10.1","mask-length":"24"}' \
+$cp_gw_url/set-interface | ./jq-linux64
+
+#set interface state
+echo '[+] Set Interface State On'
+curl -s -k \
+-H "Content-Type: application/json" \
+-H "Accept: bla" \
+-H "X-chkp-sid: $SID" \
+-X POST -d '{"interface":"eth5","state":"true"}' \
+$cp_gw_url/set-interface/state | ./jq-linux64
+
+
