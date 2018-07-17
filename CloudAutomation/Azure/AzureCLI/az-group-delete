@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#Check Point Automation Training
+
+#Delete Resource Group
+echo '[+] AZ Group Delete'
+az group delete --name AutomationTraining --yes
+
+ 

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#Check Point Automation Training
+
+#AZ VM Create
+echo '[+] AZ VM Create'
+az vm create -g AutomationTraining -n UbuntuVM --image ubuntults | ./jq-linux64

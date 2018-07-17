@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#Check Point Automation Training
+
+#List Resource Groups
+echo '[+] AZ Group List'
+az group list | ./jq-linux64
+
+ 

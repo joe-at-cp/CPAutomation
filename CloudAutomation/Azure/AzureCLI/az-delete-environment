@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#Check Point Automation Training
+
+#AZ VM Delete
+echo '[+] AZ VM Delete'
+az vm delete --resource-group AutomationTraining --name UbuntuVM --yes | ./jq-linux64 #'.publicIpAddress' | sed -e 's/^"//' -e 's/"$//'
+
+#Delete Resource Group
+echo '[+] AZ Group Delete'
+az group delete -n AutomationTraining --yes | ./jq-linux64
+
+
+
+

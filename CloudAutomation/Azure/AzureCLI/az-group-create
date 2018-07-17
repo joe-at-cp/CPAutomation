@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#Check Point Automation Training
+
+#Create Resource Group
+echo '[+] AZ Group Create'
+az group create -n AutomationTraining -l westus2 | ./jq-linux64
+
+ 

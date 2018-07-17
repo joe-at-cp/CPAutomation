@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#Check Point Automation Training
+
+#Create Resource Group
+echo '[+] AZ Group Create'
+az group create -n AutomationTraining -l westus2 | ./jq-linux64
+
+#AZ VM Create
+echo '[+] AZ VM Create'
+az vm create -g AutomationTraining -n UbuntuVM --image ubuntults | ./jq-linux64 #'.publicIpAddress' | sed -e 's/^"//' -e 's/"$//'

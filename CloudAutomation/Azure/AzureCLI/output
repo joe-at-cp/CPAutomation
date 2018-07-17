@@ -1,0 +1,11 @@
+{
+  "fqdns": "",
+  "id": "/subscriptions/1cce8811-f2f5-43da-979f-0fcd56134741/resourceGroups/AutomationTraining/providers/Microsoft.Compute/virtualMachines/UbuntuVM",
+  "location": "westus2",
+  "macAddress": "00-0D-3A-06-4F-7E",
+  "powerState": "VM running",
+  "privateIpAddress": "10.0.0.4",
+  "publicIpAddress": "52.175.195.244",
+  "resourceGroup": "AutomationTraining",
+  "zones": ""
+}
