@@ -44,6 +44,11 @@ echo '=================== Sandblast API ===================='
 echo 'Sandblast API Key [ENTER]:'
 read sb_key
 
+echo '======================= AWS =========================='
+echo 'Enter AWS Region [ENTER]:'
+read aws_region
+
+
 echo 'Configuring Environement Variables'
 
 mgmt_url="https://$mgmt_ip/web_api/"
@@ -63,6 +68,8 @@ export cp_gw_ia_url=$gw_ia_url
 export cp_gw_ia_pass=$gw_ia_pass
 export cp_sb_key=$sb_key
 export cp_gw_role=$cp_gw_role
+
+export AWS_REGION=$aws_region
 
 echo 'Done!'
 

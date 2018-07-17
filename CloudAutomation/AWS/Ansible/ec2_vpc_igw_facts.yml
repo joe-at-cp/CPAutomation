@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  tasks:
+ 
+  - name: Gather VPC Internet Gateway Facts
+    ec2_vpc_igw_facts:
+      aws_access_key: "{{lookup('env','AWS_ACCESS_KEY_ID')}}"
+      aws_secret_key: "{{lookup('env','AWS_SECRET_ACCESS_KEY')}}"
+    register: ec2_vpc_igw_facts
+
+  - name: Display Return Data
+    debug:
+      msg: "{{ ec2_vpc_igw_facts }}"
