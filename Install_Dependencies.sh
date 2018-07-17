@@ -9,9 +9,7 @@ echo " This utlity will install the following tools:"
 echo "- Ansible"
 echo "- AWS CLI"
 echo "- Azure CLI"
-echo ""
-
-
+echo "- NTP"
 
 
 #Update Sources List
@@ -24,8 +22,9 @@ curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
 
 
 #APT update and download packages
+sudo timedatectl set-ntp no
 sudo apt-get update
-sudo apt-get install -y ansible apt-transport-https azure-cli
+sudo apt-get install -y ansible apt-transport-https azure-cli ntp awscli
 
 #PIP Install Libs
 pip install awscli --upgrade --user
