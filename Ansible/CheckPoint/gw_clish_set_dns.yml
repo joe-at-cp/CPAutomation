@@ -1,0 +1,14 @@
+---
+- hosts: "{{lookup('env','cp_gw_ip')}}" 
+  gather_facts: no
+  tasks:
+  
+  - name: "CLISH - Override Database Lock"
+    command: clish -c "lock database override"
+    ignore_errors: yes
+  - name: "CLISH - Set Primary DNS"
+    command: clish -c "set dns primary 1.1.1.1"
+  - name: "CLISH - Set Secondary DNS"
+    command: clish -c "set dns secondary 8.8.8.8"
+  - name: "CLISH - Save Config"
+    command: clish -c "save config"

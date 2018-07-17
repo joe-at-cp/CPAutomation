@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#Check Point Automation Training
+
+#Describe Instances
+echo '[+] Describe Instances'
+aws ec2 describe-instances | ./jq-linux64

@@ -1,0 +1,40 @@
+#!/bin/bashSH=`openssl passwd -crypt -salt $(openssl rand -base64 2) 'vpn123'`
+
+#Check Point Automation Training
+
+#Login and retrieve the session_id
+echo '[+] Login'
+LOGIN=`curl -s -k -H "Content-Type: application/json" -H "Accept: bla" -X POST -d '{"user":"'$cp_mgmt_user'","password":"'$cp_mgmt_pass'","session-name":"Bash Add Generic User"}' $cp_mgmt_url/login`
+SID=`echo $LOGIN | ./jq-linux64 '.sid' | sed s/\"//g`
+echo $LOGIN | ./jq-linux64
+
+#Generate and Salt a password hash for password vpn123
+HASH=`openssl passwd -crypt -salt $(openssl rand -base64 2) 'vpn123'`
+
+#Create Generic User
+echo ''
+echo '[+] Add Generic User'
+curl -s -k \
+-H "Content-Type: application/json" \
+-H "Accept: bla" \
+-H "X-chkp-sid: $SID" \
+-X POST -d '{"create":"com.checkpoint.objects.classes.dummy.CpmiUser","name":"vpnuser","email":"vpnuser@cp.com","phoneNumber":"9724446600","color":"BLUE_1","authMethod":"INTERNAL_PASSWORD","internalPassword":"'$HASH'","adminExpirationBaseData":{"create":"com.checkpoint.objects.classes.dummy.CpmiAdminExpirationBaseData","owned-object":{"expirationDate":"10-Apr-2020"}},"userc":{"create":"com.checkpoint.objects.classes.dummy.CpmiSpecificUserc","owned-object":{"useGlobalEncryptionValues":"true","ike":{"create":"com.checkpoint.objects.classes.dummy.CpmiSpecificUsercIke"}}}}}' \
+$cp_mgmt_url/add-generic-object | ./jq-linux64
+
+
+#publish
+echo ''
+echo '[+] Publish'
+curl -s -k \
+-H "Content-Type: application/json" \
+-H "Accept: bla" \
+-H "X-chkp-sid: $SID" \
+-X POST -d '{}' \
+$cp_mgmt_url/publish | ./jq-linux64
+
+#logout
+echo ''
+echo '[+] Logout'
+curl -s -k -H "Content-Type: application/json" -H "Accept: bla" -H "X-chkp-sid: $SID" -X POST -d '{}' $cp_mgmt_url/logout | ./jq-linux64
+
+
