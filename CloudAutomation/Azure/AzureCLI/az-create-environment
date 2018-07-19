@@ -8,4 +8,12 @@ az group create -n AutomationTraining -l westus2 | ./jq-linux64
 
 #AZ VM Create
 echo '[+] AZ VM Create'
-az vm create -g AutomationTraining -n UbuntuVM --image ubuntults | ./jq-linux64 #'.publicIpAddress' | sed -e 's/^"//' -e 's/"$//'
+IPADDRESS=`az vm create --resource-group AutomationTraining --name UbuntuServer --image UbuntuLTS --admin-username ubuntu --generate-ssh-keys | ./jq-linux64 '.publicIpAddress' | sed -e 's/^"//' -e 's/"$//'`
+
+#Open Port 22
+echo '[+] AZ VM Open Port'
+az vm open-port --port 22 --resource-group AutomationTraining --name UbuntuServer
+
+echo ''
+echo 'Your Ubuntu instance is available'
+echo 'Login by running: ssh ubuntu@'$IPADDRESS

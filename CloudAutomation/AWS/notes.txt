@@ -1,4 +1,0 @@
-pip install awscli --upgrade --user
-aws configure
-aws ec2 run-instances --image-id ami-b70554c8 --count 1 --instance-type t2.micro --key-name ami-b70554c8 --security-group-ids ami-b70554c8 --subnet-id subnet-4b6ff444
-aws ec2 run-instances --image-id ami-xxxxxxxx --count 1 --instance-type t2.micro --key-name MyKeyPair --security-group-ids sg-xxxxxxxx --subnet-id subnet-xxxxxxxx
