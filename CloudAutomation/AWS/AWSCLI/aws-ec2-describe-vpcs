@@ -2,6 +2,8 @@
 
 #Check Point Automation Training
 
-#Describe VPCs 
-echo '[+] Describe VPCs'
+#List VPCs
+echo '[+] EC2 Describe VPCs'
 aws ec2 describe-vpcs | ./jq-linux64
+
+ 

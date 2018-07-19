@@ -2,6 +2,8 @@
 
 #Check Point Automation Training
 
-#Describe Instances
-echo '[+] Describe Instances'
+#List EC2 Instances 
+echo '[+] EC2 Describe Instances'
 aws ec2 describe-instances | ./jq-linux64
+
+ 

@@ -50,6 +50,12 @@ aws ec2 create-route --route-table-id $ROUTETABLE --destination-cidr-block 0.0.0
 echo '[+] Associate Routing Table To VPC Subnet'
 aws ec2 associate-route-table  --subnet-id $SUBNETID --route-table-id $ROUTETABLE > /dev/null
 
+#Create SSH Keypair
+echo '[+] Creating SSH Keypair'
+aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > MyKeyPair.pem
+chmod 400 MyKeyPair.pem
+echo '[-]   MyKeyPair.pem'
+
 #Launch Image and Get InstanceId in Return
 echo '[+] Deploying AWS Image'
 InstanceID=`aws ec2 run-instances --image-id ami-ea846afc --count 1 --instance-type t2.micro --security-group-ids $SECGROUP --key-name AutomationTraining --subnet-id $SUBNETID |  ./jq-linux64 '.Instances[0] .InstanceId' | sed -e 's/^"//' -e 's/"$//'`
@@ -65,18 +71,22 @@ echo '[-]   Allocation Id: '$IPALLOC
 
 echo '[+] Waiting for Instance to Startup...'
 
-sleep 25s
+sleep 40s
 
 #Asign public ip to instance
 echo '[+] Assigning Public Ip to Instance...'
 ASSOCID=`aws ec2 associate-address --instance-id $InstanceID --public-ip $PublicIp | ./jq-linux64 '.AssociationId' | sed -e 's/^"//' -e 's/"$//'`
 echo '[+] Complete!'
 
-echo '[+] Writing .VNC File'
-echo '[connection]' > Desktop.vnc
-echo 'host='$PublicIp >> Desktop.vnc
-echo 'port=5901' >> Desktop.vnc
-echo 'password='$InstanceID >> Desktop.vnc
+echo ''
+echo ''
+echo '=========[ How to Connect to Instance ]=========='
+echo ' SSH: ssh -i MyKeyPair ubuntu@'$PublicIp
+echo ' VNC: '$PublicIp'::5901'
+echo ' VNC Password: '$InstancdID
+echo '================================================='
+echo ''
+echo ''
 
 echo ''
 echo 'When ready to delete, hit ENTER...'
@@ -105,6 +115,10 @@ sleep 3s
 
 echo '[!] Deleting Route Table'
 aws ec2 delete-route-table --route-table-id $ROUTETABLE
+
+echo '[!] Deleting Key Pair'
+aws ec2 delete-key-pair --key-name MyKeyPair
+rm -f MyKeyPair.pem
 
 echo '[!] Detach Internet Gateway From VPC'
 aws ec2 detach-internet-gateway --internet-gateway-id $INETGW --vpc-id $VPCID
