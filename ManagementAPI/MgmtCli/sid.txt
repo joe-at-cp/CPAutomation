@@ -1,0 +1,9 @@
+uid: "116e54ed-4649-48db-9d15-f4b7895be6cc"
+sid: "s-p1yt9pnO5ovg1ebPGMiJ_OmUDBlvIygShM-Z2olew"
+url: "https://192.168.30.5:443/web_api"
+session-timeout: 600
+last-login-was-at: 
+  posix: 1532372390619
+  iso-8601: "2018-07-23T13:59-0500"
+api-server-version: "1.1"
+
