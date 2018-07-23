@@ -12,6 +12,7 @@
     command: clish -c "set dns secondary 8.8.8.8"
   - name: "CLISH - Save Config"
     command: clish -c "save config"
+
 - hosts: "{{lookup('env','cp_mgmt_ip')}}"
   gather_facts: no
   tasks:
