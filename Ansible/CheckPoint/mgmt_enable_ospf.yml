@@ -1,0 +1,14 @@
+---
+- hosts: "{{lookup('env','cp_mgmt_ip')}}"
+  gather_facts: no
+  tasks:
+
+  - name: "Configuring OSPF"
+    command: "{{ item }}"
+    ignore_errors: yes
+    with_items:
+    - clish -c "lock database override"
+    - clish -c "set ospf area backbone on"
+    - clish -c "set ospf interface eth0 area backbone on"
+    - clish -c "save config"
+

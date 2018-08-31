@@ -1,0 +1,208 @@
+{
+	"info": {
+		"name": "Identity_Web_API",
+		"_postman_id": "47a713cb-a6b1-1d2e-7e69-132660dd9bf0",
+		"description": "Check Point Identity Awareness Web API\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ADD_Identity",
+			"description": "",
+			"item": [
+				{
+					"name": "Add Identity",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"shared-secret\":\"{{IA_API_KEY}}\",\r\n \"ip-address\":\"1.1.1.1\",\r\n \"user\":\"marco1\",\r\n \"machine\":\"\",\r\n \"domain\":\"checkpoint.com\",\r\n \"user-groups\": [\"POSTMAN\"],\r\n \"roles\":[\"ROLE1\"],\r\n \"session-timeout\":86400,\r\n \"fetch-user-groups\":0,\r\n \"calculate-roles\":0,\r\n \"identity-source\":\"Added via Postman\"\r\n} "
+						},
+						"url": {
+							"raw": "https://{{CP_GW}}/_IA_API/idasdk/add-identity",
+							"protocol": "https",
+							"host": [
+								"{{CP_GW}}"
+							],
+							"path": [
+								"_IA_API",
+								"idasdk",
+								"add-identity"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Add Identity - Bulk",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"shared-secret\":\"{{IA_API_KEY}}\",\r\n \"ip-address\":\"1.1.1.1\",\r\n \"user\":\"marco1\",\r\n \"machine\":\"\",\r\n \"domain\":\"checkpoint.com\",\r\n \"user-groups\": [\"POSTMAN\"],\r\n \"roles\":[\"ROLE1\"],\r\n \"session-timeout\":86400,\r\n \"fetch-user-groups\":0,\r\n \"calculate-roles\":0,\r\n \"identity-source\":\"Added via Postman\"\r\n} "
+						},
+						"url": {
+							"raw": "https://{{CP_GW}}/_IA_API/idasdk/add-identity",
+							"protocol": "https",
+							"host": [
+								"{{CP_GW}}"
+							],
+							"path": [
+								"_IA_API",
+								"idasdk",
+								"add-identity"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DELETE_Identity",
+			"description": "",
+			"item": [
+				{
+					"name": "Delete Identity",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"shared-secret\":\"{{IA_API_KEY}}\",\r\n \"ip-address\":\"1.1.1.1\"\r\n}"
+						},
+						"url": {
+							"raw": "https://{{CP_GW}}/_IA_API/idasdk/delete-identity",
+							"protocol": "https",
+							"host": [
+								"{{CP_GW}}"
+							],
+							"path": [
+								"_IA_API",
+								"idasdk",
+								"delete-identity"
+							]
+						},
+						"description": "Delete Identity"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Identity - Bulk",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"shared-secret\":\"{{IA_API_KEY}}\",\r\n \"requests\":[\r\n {\r\n \t\"ip-address\":\"1.1.1.1\"\r\n },\r\n {\r\n \t\"ip-address\":\"1.1.1.2\"\r\n },\r\n {\r\n \t\"ip-address\":\"1.1.1.3\"\r\n }\r\n]\r\n}"
+						},
+						"url": {
+							"raw": "https://{{CP_GW}}/_IA_API/idasdk/delete-identity",
+							"protocol": "https",
+							"host": [
+								"{{CP_GW}}"
+							],
+							"path": [
+								"_IA_API",
+								"idasdk",
+								"delete-identity"
+							]
+						},
+						"description": "Delete Identity"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "QUERY_Identity",
+			"description": "",
+			"item": [
+				{
+					"name": "Show Identity",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"shared-secret\":\"{{IA_API_KEY}}\",\r\n \"ip-address\":\"1.1.1.1\"\r\n}"
+						},
+						"url": {
+							"raw": "https://{{CP_GW}}/_IA_API/idasdk/show-identity",
+							"protocol": "https",
+							"host": [
+								"{{CP_GW}}"
+							],
+							"path": [
+								"_IA_API",
+								"idasdk",
+								"show-identity"
+							]
+						},
+						"description": "show identity\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Show Identity - Bulk",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"shared-secret\":\"{{IA_API_KEY}}\",\r\n \"requests\":[\r\n  {\"ip-address\":\"1.1.1.1\"},\r\n  {\"ip-address\":\"1.1.1.2\"},\r\n  {\"ip-address\":\"1.1.1.3\"}\r\n ]\r\n}"
+						},
+						"url": {
+							"raw": "https://{{CP_GW}}/_IA_API/idasdk/show-identity",
+							"protocol": "https",
+							"host": [
+								"{{CP_GW}}"
+							],
+							"path": [
+								"_IA_API",
+								"idasdk",
+								"show-identity"
+							]
+						},
+						"description": "show identity\n"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

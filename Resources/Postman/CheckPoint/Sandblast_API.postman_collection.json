@@ -1,0 +1,123 @@
+{
+	"info": {
+		"name": "Sandblast_API",
+		"_postman_id": "c0f25a47-f8e9-2d4d-9032-432d6c0dda91",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SB_API_Query",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{SB_API_KEY}}"
+					},
+					{
+						"key": "Content",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"request\": \n\t[{\"md5\": \"44d88612fea8a8f36de82e1278abb02f\",\n\t\"features\": [\"av\",\"te\"] \n\t}]\n}"
+				},
+				"url": {
+					"raw": "https://te.checkpoint.com/tecloud/api/v1/file/query",
+					"protocol": "https",
+					"host": [
+						"te",
+						"checkpoint",
+						"com"
+					],
+					"path": [
+						"tecloud",
+						"api",
+						"v1",
+						"file",
+						"query"
+					]
+				},
+				"description": "Sandblast_API_Query"
+			},
+			"response": []
+		},
+		{
+			"name": "SB_API_Upload",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{SB_API_KEY}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "{\"request\"",
+							"value": "",
+							"type": "text",
+							"description": ""
+						},
+						{
+							"key": "[{\"file_name\"",
+							"value": "\"file\",",
+							"type": "text",
+							"description": ""
+						},
+						{
+							"key": "\"features\"",
+							"value": "[\"av\",\"te\"]",
+							"type": "text",
+							"description": ""
+						},
+						{
+							"key": "}]",
+							"value": "",
+							"type": "text",
+							"description": ""
+						},
+						{
+							"key": "}",
+							"value": "",
+							"type": "text",
+							"description": ""
+						},
+						{
+							"key": "file",
+							"value": "",
+							"description": "",
+							"type": "file"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://te.checkpoint.com/tecloud/api/v1/file/upload",
+					"protocol": "https",
+					"host": [
+						"te",
+						"checkpoint",
+						"com"
+					],
+					"path": [
+						"tecloud",
+						"api",
+						"v1",
+						"file",
+						"upload"
+					]
+				},
+				"description": "Sandblast_API_Upload"
+			},
+			"response": []
+		}
+	]
+}

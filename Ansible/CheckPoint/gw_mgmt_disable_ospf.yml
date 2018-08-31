@@ -1,0 +1,25 @@
+---
+- hosts: "{{lookup('env','cp_gw_ip')}}"
+  gather_facts: no
+  tasks:
+
+  - name: "Disable OSPF"
+    command: "{{ item }}"
+    ignore_errors: yes
+    with_items:
+    - clish -c "lock database override"
+    - clish -c "set ospf area backbone off"
+    - clish -c "save config"
+
+- hosts: "{{lookup('env','cp_mgmt_ip')}}"
+  gather_facts: no
+  tasks:
+
+  - name: "Disable OSPF"
+    command: "{{ item }}"
+    ignore_errors: yes
+    with_items:
+    - clish -c "lock database override"
+    - clish -c "set ospf area backbone off"
+    - clish -c "save config"
+

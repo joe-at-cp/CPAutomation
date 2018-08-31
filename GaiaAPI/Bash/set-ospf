@@ -1,0 +1,30 @@
+#!/bin/bash
+
+#Check Point Automation Training 
+
+#Login
+echo '[+] Login'
+LOGIN=`curl -s -k -H "Content-Type: application/json" -H "Accept: bla" -X POST -d '{"user":"'$cp_gw_user'","password":"'$cp_gw_pass'"}' $cp_gw_url/login`
+SID=`echo $LOGIN | ./jq-linux64 '.sid' | sed s/\"//g`
+echo $LOGIN | ./jq-linux64
+
+
+#set ospf on 
+echo '[+] Set OSPF State On'
+curl -s -k \
+-H "Content-Type: application/json" \
+-H "Accept: bla" \
+-H "X-chkp-sid: $SID" \
+-X POST -d '{"area":"backbone","state":"true"}' \
+$cp_gw_url/set-ospf/area/state | ./jq-linux64
+
+#set ospf interface
+echo '[+] Set OSPF Interface'
+curl -s -k \
+-H "Content-Type: application/json" \
+-H "Accept: bla" \
+-H "X-chkp-sid: $SID" \
+-X POST -d '{"interface":"eth1","area":"backbone","state":"true"}' \
+$cp_gw_url/set-ospf/interface/area | ./jq-linux64
+
+
