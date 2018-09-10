@@ -22,12 +22,15 @@ curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
 
 
 #APT update and download packages
+sudo apt-get install software-properties-common
+sudo apt-add-repository -y ppa:ansible/ansible
 sudo timedatectl set-ntp no
 sudo apt-get update
-sudo apt-get install -y ansible apt-transport-https azure-cli ntp awscli
+sudo apt-get install -y ansible apt-transport-https azure-cli ntp awscli python-pip
 
 #PIP Install Libs
 pip install awscli --upgrade --user
+pip install requests
 
 
 clear
@@ -35,12 +38,17 @@ echo "==== Installing and Configuring Ansible ===="
 
 #Clone Check Point Ansible libs
 git clone --recursive https://github.com/CheckPoint-APIs-Team/cpAnsible
-sudo mkdir /etc/ansible/modules
+#sudo mkdir //ansible/modules
 sudo cp -r cpAnsible/check_point_mgmt/ /usr/lib/python2.7/dist-packages/ansible/
 sudo cp -r cpAnsible/check_point_mgmt/cp_mgmt_api_python_sdk/ /usr/lib/python2.7/dist-packages/
 
+sudo mkdir $HOME/ansible
+sudo mkdir $HOME/ansible/plugins
+sudo cp -r cpAnsible/check_point_mgmt/ $HOME/ansible/plugins/
+
+
 #/etc/ansible/ansible.cfg configuration
-sudo echo 'library        = /usr/lib/python2.7/dist-packages/ansible/' >> /etc/ansible/ansible.cfg
+sudo echo 'library        = $HOME/ansible/plugins/' >> /etc/ansible/ansible.cfg
 sudo echo 'scp_if_ssh = True' >> /etc/ansible/ansible.cfg
 sudo echo 'host_key_checking = False' >> /etc/ansible/ansible.cfg
 
