@@ -42,6 +42,7 @@ git clone --recursive https://github.com/CheckPoint-APIs-Team/cpAnsible
 sudo cp -r cpAnsible/check_point_mgmt/ /usr/lib/python2.7/dist-packages/ansible/
 sudo cp -r cpAnsible/check_point_mgmt/cp_mgmt_api_python_sdk/ /usr/lib/python2.7/dist-packages/
 
+sudo mkdir $HOME/.ansible
 sudo mkdir $HOME/.ansible/plugins
 sudo mkdir $HOME/.ansible/plugins/modules
 sudo cp -r cpAnsible/check_point_mgmt/ $HOME/.ansible/plugins/modules/
