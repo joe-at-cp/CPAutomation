@@ -32,6 +32,8 @@ sudo apt-get install -y ansible apt-transport-https azure-cli ntp awscli python-
 pip install awscli --upgrade --user
 pip install requests
 
+#Install MSF
+curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && chmod 755 msfinstall && ./msfinstall
 
 clear
 echo "==== Installing and Configuring Ansible ===="
