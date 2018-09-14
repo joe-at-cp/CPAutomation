@@ -15,7 +15,7 @@ curl -s -k \
 -H "Content-Type: application/json" \
 -H "Accept: bla" \
 -H "X-chkp-sid: $SID" \
--X POST -d '{"layer":"network","position":"top","name":"API Rule","action":"Accept","source":"InternalZone","destination":"DMZZone","track":"Extended Log","service":["ssh","icmp-proto","sqlnet2"]}' \
+-X POST -d '{"layer":"network","position":"top","name":"API Rule","action":"Accept","source":"InternalZone","destination":"DMZZone","track":"Log","service":["ssh","icmp-proto","sqlnet2"]}' \
 $cp_mgmt_url/add-access-rule | ./jq-linux64 
 
 
