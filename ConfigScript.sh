@@ -34,7 +34,7 @@ else
 fi
 
 if [ -z "$cp_mgmt_fingerprint" ]; then
-    echo 'Management Server API Fingerprint (#api fingerprint) [ENTER]:'
+    echo 'Management Server API Fingerprint (Run "api fingerprint" on Management Server and Copy SHA Fingerprint) [ENTER]:'
     read mgmt_fingerprint
 else
     echo 'Management Server API Fingerprint Already Configured! ['$cp_mgmt_fingerprint']:'
